@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:website/screens/dashboard/dashboard.dart';
 import 'package:website/screens/forms/form.dart';
+import 'package:website/screens/graphics/graphics.dart';
 import 'package:website/screens/hero/hero_screen.dart';
 import 'package:website/utils/color_constants.dart';
 
@@ -16,7 +17,7 @@ class HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    tabController = new TabController(vsync: this, length: 3, initialIndex: 0)
+    tabController = new TabController(vsync: this, length: 4, initialIndex: 0)
       ..addListener(() {
         setState(() {
           active = tabController.index;
@@ -42,7 +43,7 @@ class HomeScreenState extends State<HomeScreen>
               Container(
                 margin: EdgeInsets.only(left: 32),
                 child: Text(
-                  "Admin Material",
+                  "Gonzalo Aldana",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.white,
@@ -130,6 +131,7 @@ class HomeScreenState extends State<HomeScreen>
                 Dashboard(),
                 FormMaterial(),
                 HeroAnimation(),
+                Graphics()
               ],
             ),
           )
@@ -216,6 +218,32 @@ class HomeScreenState extends State<HomeScreen>
                 ),
                 Text(
                   "Hero",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'HelveticaNeue',
+                  ),
+                ),
+              ]),
+            ),
+          ),
+        ),
+        FlatButton(
+          color: tabController.index == 3 ? Colors.grey[100] : Colors.white,
+          onPressed: () {
+            tabController.animateTo(3);
+            drawerStatus ? Navigator.pop(context) : print("");
+          },
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              padding: EdgeInsets.only(top: 22, bottom: 22, right: 22),
+              child: Row(children: [
+                Icon(Icons.graphic_eq),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "Graphics",
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'HelveticaNeue',
