@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:website/screens/dashboard/dashboard.dart';
 import 'package:website/screens/forms/form.dart';
 import 'package:website/screens/graphics/graphics.dart';
+import 'package:website/screens/heat_calendar/HeatCalendar.dart';
 import 'package:website/screens/hero/hero_screen.dart';
 import 'package:website/utils/color_constants.dart';
 
@@ -17,7 +18,7 @@ class HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    tabController = new TabController(vsync: this, length: 4, initialIndex: 0)
+    tabController = new TabController(vsync: this, length: 5, initialIndex: 0)
       ..addListener(() {
         setState(() {
           active = tabController.index;
@@ -131,7 +132,8 @@ class HomeScreenState extends State<HomeScreen>
                 Dashboard(),
                 FormMaterial(),
                 HeroAnimation(),
-                Graphics()
+                Graphics(),
+                HeatCalendar()
               ],
             ),
           )
@@ -244,6 +246,32 @@ class HomeScreenState extends State<HomeScreen>
                 ),
                 Text(
                   "Graphics",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'HelveticaNeue',
+                  ),
+                ),
+              ]),
+            ),
+          ),
+        ),
+        FlatButton(
+          color: tabController.index == 4 ? Colors.grey[100] : Colors.white,
+          onPressed: () {
+            tabController.animateTo(4);
+            drawerStatus ? Navigator.pop(context) : print("");
+          },
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              padding: EdgeInsets.only(top: 22, bottom: 22, right: 22),
+              child: Row(children: [
+                Icon(Icons.calendar_today),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "Calendar",
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'HelveticaNeue',
